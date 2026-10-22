@@ -5,7 +5,8 @@
         "anio": 1996,
         "precio": 700,
         "id": 102,
-        "stock": 20
+        "stock": 20,
+        "imagen": "./assets/img/guitarras/fender-stratocaster.webp"
     },
     {
         "marca": "Gibson",
@@ -13,7 +14,8 @@
         "anio": 1960,
         "precio": 1200,
         "id": 103,
-        "stock": 14
+        "stock": 14,
+        "imagen": "./assets/img/guitarras/gibson-les-paul.webp"
     },
     {
         "marca": "Ibanez",
@@ -21,7 +23,8 @@
         "anio": 2001,
         "precio": 650,
         "id": 104,
-        "stock": 0
+        "stock": 0,
+        "imagen": "./assets/img/guitarras/ibanez-ar-standard.webp"
     },
     {
         "marca": "PRS",
@@ -29,7 +32,9 @@
         "anio": 2018,
         "precio": 1500,
         "id": 105,
-        "stock": 0
+        "stock": 1,
+        "imagen": "./assets/img/guitarras/prs-custom-24.webp"
+
     },
     {
         "marca": "Epiphone",
@@ -37,7 +42,8 @@
         "anio": 1965,
         "precio": 850,
         "id": 106,
-        "stock": 12
+        "stock": 12,
+        "imagen": "./assets/img/guitarras/epiphone-casino.webp"
     },
     {
         "marca": "Fender",
@@ -45,6 +51,7 @@
         "anio": 2010,
         "precio": 900,
         "id": 107,
-        "stock": 8
+        "stock": 8,
+        "imagen": "./assets/img/guitarras/fender-telecaster.webp"
     }
 ]

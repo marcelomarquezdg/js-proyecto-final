@@ -57,13 +57,14 @@ function imprimirGuitarrasEnHTML(lista) {
 
     lista.forEach(guitarra => {
 
-        const { marca, modelo, anio, precio, stock } = guitarra;
+        const { marca, modelo, anio, precio, stock, imagen } = guitarra;
 
         const card = document.createElement("article");
 
         card.classList.add("card");
 
         card.innerHTML = `
+            <img src="${imagen}" alt="${marca} ${modelo}">
             <p>Marca: ${marca}</p>
             <h3>Modelo: ${modelo}</h3>
             <p>Año: ${anio}</p>
