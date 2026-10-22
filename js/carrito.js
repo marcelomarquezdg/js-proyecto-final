@@ -24,14 +24,16 @@ const carrito = obtenerCarritoDelStorage();
 
 function calcularTotal() {
 
-    const total = carrito.reduce((acumulador, guitarra) => acumulador + guitarra.precio, 0);
-
+    const total = carrito.reduce(
+        (acumulador, guitarra) => acumulador + guitarra.precio * guitarra.cantidad,
+        0
+    );
     const totalCarrito = document.getElementById("total-carrito");
 
     totalCarrito.textContent =
-    carrito.length > 0
-        ? "Total: $" + total
-        : "El carrito está vacío";
+        carrito.length > 0
+            ? "Total: $" + total
+            : "El carrito está vacío";
 }
 
 // Mostrar carrito en el HTML
@@ -44,7 +46,7 @@ function imprimirCarritoEnHTML(lista) {
 
     lista.forEach(guitarra => {
 
-        const { marca, modelo, anio, precio } = guitarra;
+        const { marca, modelo, anio, precio, cantidad } = guitarra;
 
         const card = document.createElement("article");
 
@@ -55,12 +57,43 @@ function imprimirCarritoEnHTML(lista) {
             <h3>Modelo: ${modelo}</h3>
             <p>Año: ${anio}</p>
             <p>Precio: $${precio}</p>
+            <p>Cantidad: ${cantidad}</p>
+            <button class="btn-restar">-</button>
+            <button class="btn-sumar">+</button>
             <button class="card-boton">
                 Eliminar del carrito
             </button>
         `;
 
         contenedorCarrito.appendChild(card);
+
+        const btnSumar = card.querySelector(".btn-sumar");
+
+        btnSumar.addEventListener("click", () => {
+            guitarra.cantidad++;
+
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+
+            imprimirCarritoEnHTML(carrito);
+            calcularTotal();
+        });
+
+        const btnRestar = card.querySelector(".btn-restar");
+
+        btnRestar.addEventListener("click", () => {
+
+            if (guitarra.cantidad > 1) {
+                guitarra.cantidad--;
+            } else {
+                const indice = carrito.indexOf(guitarra);
+                carrito.splice(indice, 1);
+            }
+
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+
+            imprimirCarritoEnHTML(carrito);
+            calcularTotal();
+        });
 
         const btnEliminar = card.querySelector(".card-boton");
 

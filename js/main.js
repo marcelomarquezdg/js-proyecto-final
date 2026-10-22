@@ -81,7 +81,18 @@ function imprimirGuitarrasEnHTML(lista) {
 
         btnAgregar.addEventListener("click", () => {
 
-            carrito.push(guitarra);
+            const guitarraEnCarrito = carrito.find(
+                producto => producto.id === guitarra.id
+            );
+
+            if (guitarraEnCarrito) {
+                guitarraEnCarrito.cantidad = (guitarraEnCarrito.cantidad ?? 1) + 1;
+            } else {
+                carrito.push({
+                    ...guitarra,
+                    cantidad: 1
+                });
+            }
 
             localStorage.setItem("carrito", JSON.stringify(carrito));
 
