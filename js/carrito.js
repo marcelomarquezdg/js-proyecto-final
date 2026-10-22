@@ -116,6 +116,58 @@ function imprimirCarritoEnHTML(lista) {
 imprimirCarritoEnHTML(carrito);
 calcularTotal();
 
+//* Finalizar compra*
+
+const btnFinalizarCompra = document.getElementById("finalizar-compra");
+
+btnFinalizarCompra.addEventListener("click", () => {
+
+    if (carrito.length === 0) {
+        Swal.fire({
+            title: "Tu carrito está vacío",
+            text: "Agregá productos antes de finalizar la compra.",
+            icon: "info",
+            confirmButtonColor: "#2e7d32"
+        });
+
+        return;
+    }
+
+    const total = carrito.reduce(
+        (acumulador, guitarra) => acumulador + guitarra.precio * guitarra.cantidad,
+        0
+    );
+
+    Swal.fire({
+        title: "¿Confirmar compra?",
+        text: "El total de tu compra es $" + total,
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#2e7d32",
+        cancelButtonColor: "#333",
+        confirmButtonText: "Sí, comprar",
+        cancelButtonText: "Seguir comprando",
+        reverseButtons: true
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            carrito.length = 0;
+
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+
+            imprimirCarritoEnHTML(carrito);
+            calcularTotal();
+
+            Swal.fire({
+                title: "Compra realizada",
+                text: "Tu compra se completó correctamente.",
+                icon: "success",
+                confirmButtonColor: "#2e7d32"
+            });
+        }
+    });
+});
+
 //Vaciar carrito
 
 const btnVaciarCarrito = document.getElementById("vaciar-carrito");
