@@ -1,4 +1,4 @@
-//Recuperar carrito desde localStorage e implementar try/catch/fianlly
+//Recuperar carrito desde localStorage e implementar try/catch/finally
 
 function obtenerCarritoDelStorage() {
     try {
@@ -20,21 +20,72 @@ function obtenerCarritoDelStorage() {
 
 const carrito = obtenerCarritoDelStorage();
 
+const inputCodigoDescuento = document.getElementById("codigo-descuento");
+
+const btnAplicarDescuento = document.getElementById("aplicar-descuento");
+
+let descuentoAplicado = localStorage.getItem("descuentoAplicado") === "true";
+
 //Calcular total del carrito
 
 function calcularTotal() {
 
-    const total = carrito.reduce(
+    const subtotal = carrito.reduce(
         (acumulador, guitarra) => acumulador + guitarra.precio * guitarra.cantidad,
         0
     );
+
+    const total = descuentoAplicado
+        ? subtotal * 0.90
+        : subtotal;
+
     const totalCarrito = document.getElementById("total-carrito");
 
-    totalCarrito.textContent =
-        carrito.length > 0
-            ? "Total: $" + total
-            : "El carrito está vacío";
+    if (carrito.length > 0) {
+        totalCarrito.innerHTML = descuentoAplicado
+            ? `
+            Subtotal: $${subtotal}<br>
+            Descuento: 10%<br>
+            <strong>Total: $${total}</strong>
+        `
+            : `Total: $${total}`;
+
+    } else {
+        totalCarrito.textContent = "El carrito está vacío";
+    }
 }
+
+btnAplicarDescuento.addEventListener("click", () => {
+
+    const codigoIngresado = inputCodigoDescuento.value.trim().toUpperCase();
+
+    if (codigoIngresado === "GUITARRA10") {
+        descuentoAplicado = true;
+        localStorage.setItem("descuentoAplicado", "true");
+
+        calcularTotal();
+
+        Swal.fire({
+            title: "Descuento aplicado",
+            text: "Se aplicó un 10% de descuento a tu compra.",
+            icon: "success",
+            confirmButtonColor: "#2e7d32"
+        });
+
+    } else {
+        descuentoAplicado = false;
+        localStorage.setItem("descuentoAplicado", "false");
+
+        calcularTotal();
+
+        Swal.fire({
+            title: "Código inválido",
+            text: "El código ingresado no es válido.",
+            icon: "error",
+            confirmButtonColor: "#d33"
+        });
+    }
+});
 
 // Mostrar carrito en el HTML
 
@@ -133,10 +184,14 @@ btnFinalizarCompra.addEventListener("click", () => {
         return;
     }
 
-    const total = carrito.reduce(
+    const subtotal = carrito.reduce(
         (acumulador, guitarra) => acumulador + guitarra.precio * guitarra.cantidad,
         0
     );
+
+    const total = descuentoAplicado
+        ? subtotal * 0.90
+        : subtotal;
 
     Swal.fire({
         title: "¿Confirmar compra?",
@@ -152,6 +207,9 @@ btnFinalizarCompra.addEventListener("click", () => {
 
         if (result.isConfirmed) {
             carrito.length = 0;
+
+            descuentoAplicado = false;
+            localStorage.setItem("descuentoAplicado", "false");
 
             localStorage.setItem("carrito", JSON.stringify(carrito));
 
@@ -186,6 +244,9 @@ btnVaciarCarrito.addEventListener("click", () => {
     }).then((result) => {
         if (result.isConfirmed) {
             carrito.length = 0;
+
+            descuentoAplicado = false;
+            localStorage.setItem("descuentoAplicado", "false");
 
             localStorage.setItem("carrito", JSON.stringify(carrito));
 
