@@ -196,13 +196,18 @@ function imprimirGuitarrasEnHTML(lista) {
 
     lista.forEach(guitarra => {
 
-        const { id, marca, modelo, anio, precio, stock } = guitarra;
+        const { id, marca, modelo, anio, precio, stock, imagen } = guitarra;
+
+        const rutaImagen = imagen
+            ? imagen.replace("./assets/", "../assets/")
+            : "../assets/img/guitarras/guitarra-default.webp";
 
         const card = document.createElement("article");
 
         card.classList.add("card");
 
         card.innerHTML = `
+            <img src="${rutaImagen}" alt="${marca} ${modelo}">
             <p>ID: ${id}</p>
             <p>Marca: ${marca}</p>
             <h3>Modelo: ${modelo}</h3>
