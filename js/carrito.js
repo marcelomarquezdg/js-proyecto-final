@@ -97,13 +97,16 @@ function imprimirCarritoEnHTML(lista) {
 
     lista.forEach(guitarra => {
 
-        const { marca, modelo, anio, precio, cantidad } = guitarra;
+        const { marca, modelo, anio, precio, cantidad, imagen  } = guitarra;
+
+        const rutaImagen = imagen.replace("./assets/", "../assets/");
 
         const card = document.createElement("article");
 
         card.classList.add("card");
 
         card.innerHTML = `
+            <img src="${rutaImagen}" alt="${marca} ${modelo}">
             <p>Marca: ${marca}</p>
             <h3>Modelo: ${modelo}</h3>
             <p>Año: ${anio}</p>

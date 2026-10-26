@@ -1,15 +1,12 @@
 class Guitarra {
-    constructor(marca, modelo, anio, precio, id, stock) {
+    constructor(marca, modelo, anio, precio, id, stock, imagen) {
         this.marca = marca;
         this.modelo = modelo;
         this.anio = anio;
         this.precio = precio;
         this.id = id;
         this.stock = stock;
-    }
-
-    aplicarDescuento(porcentaje) {
-        this.precio = this.precio * (1 - porcentaje / 100);
+        this.imagen = imagen;
     }
 }
 
@@ -124,7 +121,8 @@ function obtenerGuitarraDelForm() {
             inputAnio,
             inputPrecio,
             siguienteId,
-            inputStock
+            inputStock,
+            "./assets/img/guitarras/guitarra-default.webp"
         );
 
         inventario.push(nuevaGuitarra);
