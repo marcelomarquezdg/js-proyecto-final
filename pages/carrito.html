@@ -6,24 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/carrito.js" defer></script>
-    <title>Tienda de guitarras - Carrito</title>
+    <title>Chelo's Guitars - Carrito</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
     <header>
-        <nav>
-            <a href="../index.html">Inicio</a>
-            <a href="./carrito.html">Carrito</a>
-            <a href="./gestion.html">Gestión</a>
-        </nav>
+        <div class="header-contenido">
+            <a href="../index.html" class="logo-link">
+                <img src="../assets/img/branding/chelos-guitars-logo.webp" alt="Chelo's Guitars" class="logo">
+            </a>
+
+            <nav>
+                <a href="../index.html">Inicio</a>
+                <a href="./carrito.html" class="nav-activo">Carrito</a>
+                <a href="./gestion.html">Gestión</a>
+            </nav>
+        </div>
     </header>
 
     <main>
 
-        <h1>Carrito de compras</h1>
-        <p>Tienda de guitarras de Marcelo</p>
+        <h1 class="titulo-seccion">Tu carrito</h1>
 
         <section>
             <h2>Productos agregados</h2>
@@ -31,25 +36,32 @@
             <div id="contenedor-carrito" class="productos"></div>
         </section>
 
-        <section>
-            <p id="total-carrito"></p>
-        </section>
-        
-        <section class="seccion-descuento">
-            <label for="codigo-descuento">Código de descuento</label>
-            <input type="text" id="codigo-descuento" placeholder="Ingresá tu código">
-            <button id="aplicar-descuento" class="card-boton">
-                Aplicar descuento
-            </button>
-        </section>
+        <section class="resumen-carrito">
 
-        <section>
-            <button id="finalizar-compra" class="card-boton">
-                Finalizar compra
-            </button>
-            <button id="vaciar-carrito" class="card-boton">
-                Vaciar carrito
-            </button>
+            <div class="bloque-descuento">
+                <label for="codigo-descuento">Código de descuento</label>
+
+                <div class="descuento-controles">
+                    <input type="text" id="codigo-descuento" placeholder="Ingresá tu código">
+
+                    <button id="aplicar-descuento" class="card-boton btn-secundario">
+                        Aplicar
+                    </button>
+                </div>
+            </div>
+
+            <p id="total-carrito" class="total-carrito"></p>
+
+            <div class="acciones-carrito">
+                <button id="finalizar-compra" class="card-boton btn-principal">
+                    Finalizar compra
+                </button>
+
+                <button id="vaciar-carrito" class="card-boton btn-vaciar">
+                    Vaciar carrito
+                </button>
+            </div>
+
         </section>
 
         <section>
@@ -59,7 +71,11 @@
     </main>
 
     <footer>
-        <p>Tienda de guitarras de Marcelo</p>
+        <div class="footer-contenido">
+            <img src="../assets/img/branding/chelos-guitars-logo.webp" alt="Chelo's Guitars" class="footer-logo">
+
+            <p>Pasión por la música. Guitarras para todos los estilos.</p>
+        </div>
     </footer>
 
 </body>

@@ -8,53 +8,71 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="../js/gestion.js" defer></script>
-    <title>Tienda de guitarras - Gestión</title>
+    <title>Chelo's Guitars - Gestión</title>
 </head>
 
 <body>
 
     <header>
-        <nav>
-            <a href="../index.html">Inicio</a>
-            <a href="./carrito.html">Carrito</a>
-            <a href="./gestion.html">Gestión</a>
-        </nav>
+        <div class="header-contenido">
+            <a href="../index.html" class="logo-link">
+                <img src="../assets/img/branding/chelos-guitars-logo.webp" alt="Chelo's Guitars" class="logo">
+            </a>
+
+            <nav>
+                <a href="../index.html">Inicio</a>
+                <a href="./carrito.html">Carrito</a>
+                <a href="./gestion.html" class="nav-activo">Gestión</a>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <h1>Gestión de inventario</h1>
-        <p>Tienda de guitarras de Marcelo</p>
+        <h1 class="titulo-seccion">Gestión de inventario</h1>
+        <p class="gestion-intro">
+            Administrá las guitarras disponibles en la tienda.
+        </p>
 
-        <section class="seccion-busqueda">
+        <section class="seccion-busqueda gestion-busqueda">
             <label for="busqueda">Buscar por marca o modelo</label>
             <input type="text" id="busqueda" placeholder="Ej: Fender o Telecaster">
         </section>
 
         <section>
-            <h2>Guitarras disponibles</h2>
+            <h2 class="titulo-seccion">Guitarras disponibles</h2>
 
             <div id="contenedor-guitarras" class="productos"></div>
         </section>
 
         <section class="seccion-formulario">
-            <h2>Agregar guitarra</h2>
+            <h2 class="titulo-seccion">Agregar guitarra</h2>
 
             <form id="form-agregar-guitarra" class="form-guitarra">
 
-                <label for="input-marca">Marca</label>
-                <input type="text" id="input-marca">
+                <div class="campo-formulario">
+                    <label for="input-marca">Marca</label>
+                    <input type="text" id="input-marca">
+                </div>
 
-                <label for="input-modelo">Modelo</label>
-                <input type="text" id="input-modelo">
+                <div class="campo-formulario">
+                    <label for="input-modelo">Modelo</label>
+                    <input type="text" id="input-modelo">
+                </div>
 
-                <label for="input-anio">Año</label>
-                <input type="number" id="input-anio">
+                <div class="campo-formulario">
+                    <label for="input-anio">Año</label>
+                    <input type="number" id="input-anio">
+                </div>
 
-                <label for="input-precio">Precio</label>
-                <input type="number" id="input-precio">
+                <div class="campo-formulario">
+                    <label for="input-precio">Precio</label>
+                    <input type="number" id="input-precio">
+                </div>
 
-                <label for="input-stock">Stock</label>
-                <input type="number" id="input-stock">
+                <div class="campo-formulario">
+                    <label for="input-stock">Stock</label>
+                    <input type="number" id="input-stock">
+                </div>
 
                 <button type="submit" class="card-boton">
                     Agregar guitarra
@@ -69,7 +87,11 @@
     </main>
 
     <footer>
-        <p>Tienda de guitarras de Marcelo</p>
+        <div class="footer-contenido">
+            <img src="../assets/img/branding/chelos-guitars-logo.webp" alt="Chelo's Guitars" class="footer-logo">
+
+            <p>Pasión por la música. Guitarras para todos los estilos.</p>
+        </div>
     </footer>
 
 </body>

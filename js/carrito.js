@@ -97,27 +97,39 @@ function imprimirCarritoEnHTML(lista) {
 
     lista.forEach(guitarra => {
 
-        const { marca, modelo, anio, precio, cantidad, imagen  } = guitarra;
+        const { marca, modelo, anio, precio, cantidad, imagen } = guitarra;
 
         const rutaImagen = imagen.replace("./assets/", "../assets/");
 
         const card = document.createElement("article");
 
-        card.classList.add("card");
+        card.classList.add("carrito-card");
 
         card.innerHTML = `
-            <img src="${rutaImagen}" alt="${marca} ${modelo}">
-            <p>Marca: ${marca}</p>
-            <h3>Modelo: ${modelo}</h3>
-            <p>Año: ${anio}</p>
-            <p>Precio: $${precio}</p>
-            <p>Cantidad: ${cantidad}</p>
-            <button class="btn-restar">-</button>
-            <button class="btn-sumar">+</button>
-            <button class="card-boton">
-                Eliminar del carrito
-            </button>
-        `;
+    <div class="carrito-imagen">
+        <img src="${rutaImagen}" alt="${marca} ${modelo}">
+    </div>
+    <div class="carrito-info">
+        <p class="carrito-marca">${marca}</p>
+        <h3>${modelo}</h3>
+        <p>Año: ${anio}</p>
+        <p>
+            Precio:
+            <span class="precio">$${precio}</span>
+        </p>
+        <div class="carrito-cantidad">
+            <span>Cantidad:</span>
+            <div class="cantidad-controles">
+                <button class="btn-restar">-</button>
+                <span>${cantidad}</span>
+                <button class="btn-sumar">+</button>
+            </div>
+        </div>
+        <button class="btn-eliminar">
+            Eliminar del carrito
+        </button>
+    </div>
+`;
 
         contenedorCarrito.appendChild(card);
 
@@ -149,7 +161,7 @@ function imprimirCarritoEnHTML(lista) {
             calcularTotal();
         });
 
-        const btnEliminar = card.querySelector(".card-boton");
+        const btnEliminar = card.querySelector(".btn-eliminar");
 
         btnEliminar.addEventListener("click", () => {
 
@@ -209,6 +221,30 @@ btnFinalizarCompra.addEventListener("click", () => {
     }).then((result) => {
 
         if (result.isConfirmed) {
+
+            const inventarioGuardado = JSON.parse(
+                localStorage.getItem("inventario")
+            ) ?? [];
+
+            carrito.forEach(productoCarrito => {
+
+                const guitarraInventario = inventarioGuardado.find(
+                    guitarra => guitarra.id === productoCarrito.id
+                );
+
+                if (guitarraInventario) {
+                    guitarraInventario.stock = Math.max(
+                        0,
+                        guitarraInventario.stock - productoCarrito.cantidad
+                    );
+                }
+            });
+
+            localStorage.setItem(
+                "inventario",
+                JSON.stringify(inventarioGuardado)
+            );
+
             carrito.length = 0;
 
             descuentoAplicado = false;

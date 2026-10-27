@@ -208,14 +208,14 @@ function imprimirGuitarrasEnHTML(lista) {
 
         card.innerHTML = `
             <img src="${rutaImagen}" alt="${marca} ${modelo}">
-            <p>ID: ${id}</p>
-            <p>Marca: ${marca}</p>
-            <h3>Modelo: ${modelo}</h3>
-            <p>Año de fabricación: ${anio}</p>
-            <p>Precio: $${precio}</p>
+            <p class="gestion-id">ID: ${id}</p>
+            <p class="gestion-marca">${marca}</p>
+            <h3>${modelo}</h3>
+            <p>Año: ${anio}</p>
+            <p>Precio: <span class="precio">$${precio}</span></p>
             <p>Stock: ${stock}</p>
 
-            <button class="card-boton">
+            <button class="card-boton btn-eliminar-gestion">
                 Eliminar guitarra
             </button>
         `;

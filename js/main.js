@@ -68,7 +68,7 @@ function imprimirGuitarrasEnHTML(lista) {
             <p>Marca: ${marca}</p>
             <h3>Modelo: ${modelo}</h3>
             <p>Año: ${anio}</p>
-            <p>Precio: $${precio}</p>
+            <p>Precio: <span class="precio">$${precio}</span></p>
             <p>Stock: ${stock}</p>
 
             <button class="card-boton">
