@@ -4,7 +4,7 @@ Simulador de una tienda de guitarras desarrollado en JavaScript.
 
 ## Funcionalidades
 
-- -Visualización de guitarras disponibles con imagen, precio y stock
+- Visualización de guitarras disponibles con imagen, precio y stock
 - Búsqueda de guitarras por marca o modelo
 - Carrito de compras con imágenes de los productos
 - Agregar y eliminar productos del carrito
@@ -34,8 +34,6 @@ Simulador de una tienda de guitarras desarrollado en JavaScript.
 - `pages/gestion.html`: gestión del inventario
 
 ## Datos
-
-El inventario inicial se encuentra en:
 
 -El inventario inicial se encuentra en `data/guitarras.json`
 
